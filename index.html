@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phan Huỳnh Trí Thông | Chuyên Gia & Tư Vấn Kỹ Thuật</title>
+    <meta name="description" content="Trang web chính thức của Phan Huỳnh Trí Thông - Chuyên gia Tư vấn Kỹ thuật, Phát triển Web và Giải pháp Doanh nghiệp cao cấp.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#38bdf8',
+                            gold: '#fbbf24'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Inter & Google Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Cursor Trail & Dot Styles */
+        #cursor-dot, #cursor-trail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 9999px;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.25s ease;
+        }
+
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+        }
+
+        #cursor-trail {
+            width: 34px;
+            height: 34px;
+            border: 1.5px solid rgba(56, 189, 248, 0.45);
+            background-color: rgba(56, 189, 248, 0.06);
+        }
+
+        .cursor-hover #cursor-trail {
+            width: 48px;
+            height: 48px;
+            border-color: rgba(56, 189, 248, 0.85);
+            background-color: rgba(56, 189, 248, 0.14);
+        }
+
+        .magnetic-btn {
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        @media (pointer: coarse), (max-width: 767px) {
+            #cursor-dot, #cursor-trail {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- CUSTOM CURSOR ELEMENTS -->
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-trail" aria-hidden="true"></div>
+
+    <!-- NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-wider text-white">
+                TRÍ THÔNG<span class="text-sky-400">.</span>
+            </a>
+            <nav id="desktop-menu" class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-sky-400 transition-colors">Giới thiệu</a>
+                <a href="#services" class="hover:text-sky-400 transition-colors">Dịch vụ</a>
+                <a href="#projects" class="hover:text-sky-400 transition-colors">Dự án</a>
+                <a href="#contact" class="hover:text-sky-400 transition-colors">Liên hệ</a>
+            </nav>
+            <div class="hidden md:block">
+                <a href="#contact" class="magnetic-btn inline-block px-5 py-2.5 rounded-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-sm shadow-lg shadow-sky-500/20">
+                    Hợp tác ngay
+                </a>
+            </div>
+            <!-- Mobile menu button -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3">
+            <a href="#about" class="block text-slate-300 hover:text-sky-400 transition-colors">Giới thiệu</a>
+            <a href="#services" class="block text-slate-300 hover:text-sky-400 transition-colors">Dịch vụ</a>
+            <a href="#projects" class="block text-slate-300 hover:text-sky-400 transition-colors">Dự án</a>
+            <a href="#contact" class="block text-slate-300 hover:text-sky-400 transition-colors">Liên hệ</a>
+            <a href="#contact" class="block text-center px-5 py-2.5 rounded-full bg-sky-500 text-slate-950 font-semibold text-sm">
+                Hợp tác ngay
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen pt-32 pb-20 flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(56,189,248,0.15),rgba(255,255,255,0))]"></div>
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <span class="px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-widest inline-block mb-6">
+                Personal Branding & Business Advisor
+            </span>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                Phan Huỳnh Trí Thông
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Kiến tạo giải pháp công nghệ toàn diện, xây dựng hạ tầng web cao cấp và tư vấn chiến lược số hóa tối ưu cho doanh nghiệp.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="magnetic-btn w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200">
+                    Xem dự án nổi bật
+                </a>
+                <a href="#contact" class="magnetic-btn w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-700 bg-slate-900/50 hover:bg-slate-800 text-white font-semibold">
+                    Tư vấn trực tiếp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 bg-slate-900/50 border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-white mb-6">Tầm nhìn & Định hướng Chuyên môn</h2>
+                <p class="text-slate-400 mb-4 leading-relaxed">
+                    Tôi là <strong class="text-white">Phan Huỳnh Trí Thông</strong>, hoạt động trong lĩnh vực tư vấn giải pháp và phát triển hệ thống web chất lượng cao. Với định hướng chú trọng vào tính chính xác, hiệu năng vận hành và thẩm mỹ tinh tế.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    Mục tiêu của tôi là đồng hành cùng các đối tác doanh nghiệp và cá nhân cao cấp để hiện thực hóa các sản phẩm số chuẩn mực, bảo mật và khả năng mở rộng lâu dài.
+                </p>
+                <div class="grid grid-cols-2 gap-4 border-t border-slate-800 pt-6">
+                    <div>
+                        <h4 class="text-2xl font-bold text-sky-400">100%</h4>
+                        <p class="text-xs text-slate-500">Tối ưu hiệu năng & Bảo mật</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-sky-400">24/7</h4>
+                        <p class="text-xs text-slate-500">Hỗ trợ & Bảo trì kỹ thuật</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-tr from-sky-500/10 to-transparent p-8 rounded-2xl border border-slate-800">
+                <h3 class="text-xl font-semibold text-white mb-4">Lĩnh vực cốt lõi</h3>
+                <ul class="space-y-3 text-slate-300">
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                        Thiết kế & Kiến trúc Web (Full-Stack Architecture)
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                        Tối ưu hóa Tốc độ (PageSpeed) & SEO On-page
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                        Tư vấn Giải pháp Số hóa cho Doanh nghiệp
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                        Quản trị, Bảo mật & Nâng cấp Hệ thống dài hạn
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Dịch vụ Cung cấp</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">Giải pháp toàn diện giúp doanh nghiệp xây dựng vị thế vững chắc trên môi trường số.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all">
+                    <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center font-bold mb-6">01</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Phát triển Website Cao cấp</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Xây dựng trang web cá nhân, doanh nghiệp và bán hàng với chuẩn mã nguồn hiện đại, giao diện mượt mà và bảo mật cao.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all">
+                    <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center font-bold mb-6">02</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Tối ưu & Sửa lỗi (Debug)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Chẩn đoán sự cố, xử lý lỗi kỹ thuật, tăng tốc độ tải trang đạt điểm tối đa trên Google PageSpeed Insights.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all">
+                    <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center font-bold mb-6">03</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Đồng hành & Bảo trì Dài hạn</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Quản trị vận hành, sao lưu dữ liệu, bảo mật và liên tục nâng cấp tính năng theo sự phát triển của thương hiệu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-24 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Dự án Tiêu biểu</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">Các dự án và giải pháp được thiết kế tối ưu hóa theo yêu cầu kinh doanh riêng biệt.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all">
+                    <span class="text-xs text-sky-400 uppercase font-semibold">Web Application</span>
+                    <h3 class="text-2xl font-bold text-white mt-2 mb-3">Hệ thống Quản lý Doanh nghiệp</h3>
+                    <p class="text-slate-400 text-sm mb-6">Web App hỗ trợ tự động hóa quy trình nội bộ, theo dõi chỉ số kinh doanh theo thời gian thực.</p>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Next.js</span>
+                        <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Tailwind CSS</span>
+                        <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">TypeScript</span>
+                    </div>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all">
+                    <span class="text-xs text-sky-400 uppercase font-semibold">E-Commerce Platform</span>
+                    <h3 class="text-2xl font-bold text-white mt-2 mb-3">Trang Bán hàng Cao cấp</h3>
+                    <p class="text-slate-400 text-sm mb-6">Website thương mại điện tử giao diện sang trọng, tốc độ xử lý thanh toán và đặt hàng siêu tốc.</p>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">React</span>
+                        <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Node.js</span>
+                        <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & QR PAYMENT SECTION -->
+    <section id="contact" class="py-24 bg-slate-900/50 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Bắt đầu Dự án cùng Phan Huỳnh Trí Thông</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Bạn đang cần xây dựng một trang web mới, nâng cấp hệ thống hiện có hoặc thanh toán/đặt cọc dịch vụ? Hãy để lại thông tin hoặc quét mã QR bên cạnh.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Column: Contact Form -->
+                <div class="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8">
+                    <div id="success-alert" class="hidden p-6 mb-6 bg-sky-500/10 border border-sky-500/30 rounded-xl text-sky-400 font-semibold">
+                        Cảm ơn bạn! Thông tin liên hệ đã được gửi thành công. Tôi sẽ phản hồi trong thời gian sớm nhất.
+                    </div>
+
+                    <form id="contact-form" class="space-y-4 text-left">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Họ và tên</label>
+                            <input type="text" placeholder="Nguyễn Văn A" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-sky-500 transition-colors" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Email / Số điện thoại</label>
+                            <input type="text" placeholder="example@gmail.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-sky-500 transition-colors" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Yêu cầu dự án</label>
+                            <textarea rows="4" placeholder="Mô tả ngắn gọn nhu cầu của bạn..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-sky-500 transition-colors" required></textarea>
+                        </div>
+                        <button type="submit" class="magnetic-btn w-full py-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold shadow-lg shadow-sky-500/20">
+                            Gửi yêu cầu hợp tác
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Direct QR Code Card (Option B) -->
+                <div class="lg:col-span-5 bg-slate-900 border border-slate-800 hover:border-sky-500/40 transition-all rounded-2xl p-6 sm:p-8 text-center">
+                    <span class="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold uppercase tracking-wider inline-block mb-4">
+                        Thanh toán / Đặt cọc nhanh
+                    </span>
+                    <h3 class="text-xl font-bold text-white mb-2">Quét mã QR Chuyển khoản</h3>
+                    <p class="text-slate-400 text-sm mb-6">Mở ứng dụng ngân hàng hoặc ví điện tử để quét mã trực tiếp.</p>
+
+                    <div class="bg-white p-4 rounded-2xl inline-block shadow-xl mx-auto mb-6">
+                        <img src="1000020400.png" alt="Mã QR chuyển khoản Phan Huỳnh Trí Thông" class="w-52 h-52 sm:w-56 sm:h-56 object-contain mx-auto">
+                    </div>
+
+                    <div class="border-t border-slate-800 pt-4 text-sm space-y-1">
+                        <p class="text-slate-400">Người thụ hưởng:</p>
+                        <p class="font-bold text-white tracking-wide">PHAN HUỲNH TRÍ THÔNG</p>
+                        <p class="text-xs text-slate-500 pt-1">Vui lòng ghi rõ tên & nội dung khi chuyển khoản.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-900 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Phan Huỳnh Trí Thông. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Toggle Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form Submission Intercept
+        const contactForm = document.getElementById('contact-form');
+        const successAlert = document.getElementById('success-alert');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            contactForm.classList.add('hidden');
+            successAlert.classList.remove('hidden');
+        });
+
+        // Smooth Cursor Trail (Option 2)
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorTrail = document.getElementById('cursor-trail');
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+
+        if (!isTouchDevice && cursorDot && cursorTrail) {
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let trailX = mouseX;
+            let trailY = mouseY;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.left = `${mouseX}px`;
+                cursorDot.style.top = `${mouseY}px`;
+            });
+
+            function animateTrail() {
+                trailX += (mouseX - trailX) * 0.16;
+                trailY += (mouseY - trailY) * 0.16;
+                cursorTrail.style.left = `${trailX}px`;
+                cursorTrail.style.top = `${trailY}px`;
+                requestAnimationFrame(animateTrail);
+            }
+            animateTrail();
+
+            // Expand trail on interactive elements
+            const interactiveEls = document.querySelectorAll('a, button, input, textarea');
+            interactiveEls.forEach((el) => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+            });
+
+            // Subtle Magnetic Hover for CTA buttons
+            const magneticBtns = document.querySelectorAll('.magnetic-btn');
+            magneticBtns.forEach((btn) => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const offsetX = (e.clientX - (rect.left + rect.width / 2)) * 0.22;
+                    const offsetY = (e.clientY - (rect.top + rect.height / 2)) * 0.22;
+                    btn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
